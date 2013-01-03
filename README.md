@@ -1,4 +1,4 @@
 BadIPFetch
 ==========
 
-API to fetch detected bad ip addresses from the DTAG early warning system
+Tool to fetch bad / malicious IP addresses from the DTAG early warning system
