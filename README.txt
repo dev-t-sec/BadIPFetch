@@ -43,6 +43,39 @@ If you want to deploy the code in a productive environment, ensure, that you hav
 memory for Redis allocated to keep everything in memory.
 
 
+Using the supplied demo code:
+-----------------------------
+
+Create a directory config in your user home.
+
+E.g. for my setup
+
+mkdir /Users/flake/config
+
+Create a file configs.txt within this directory with the following lines:
+
+badipfetchname=YOUR USERNAME
+badipfetchpw=YOUR PASSWORD
+
+Compile the code using the supplied ant script.
+
+Demo output:
+------------
+
+Sat Mar 02 08:44:12 CET 2013: Info: Fetching IPs from EWS as local DB is outdated
+Answer from server: <EWSSimpleIPInfo><Sources><Source><Address>100.200.300.400</Address></Source></EWSSimpleIPInfo>
+Info: Extracted 1000 IPs at time Sat Mar 02 08:44:21 CET 2013
+Sat Mar 02 08:44:21 CET 2013: Info: Set last update of database
+Sat Mar 02 08:44:21 CET 2013: Info: Set ip number to 1000 within database
+
+How to implement a cron job alike call (dumping IPs at every call):
+-------------------------------------------------------------------
+
+ant
+call ./start.sh with username and password as parameters
+
+
+
 Cheers
 
 Markus
