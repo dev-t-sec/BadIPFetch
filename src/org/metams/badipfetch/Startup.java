@@ -70,7 +70,7 @@ public class Startup
             try
             {
                 String authToken = x.getMessage(m_password, m_username);
-                List ips = x.fetchIPs(authToken);
+                List ips = x.fetchIPs(authToken, true);
             }
             catch (UnsupportedEncodingException ex2)
             {

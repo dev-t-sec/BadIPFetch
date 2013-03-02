@@ -73,7 +73,7 @@ public class EWSClient
      * @param authToken
      * @return
      */
-    public List fetchIPs(String authToken)
+    public List fetchIPs(String authToken, boolean verbose)
     {
 
         // check for productive / demo mode
@@ -98,9 +98,9 @@ public class EWSClient
         {
             // no data stored in db
 
-            System.out.println(new java.util.Date().toString() + ": Info: Fecthing ips from EWS as local DB is empty");
+            if (verbose) System.out.println(new java.util.Date().toString() + ": Info: Fecthing ips from EWS as local DB is empty");
 
-            return fetchIPsFromCore(authToken);
+            return fetchIPsFromCore(authToken, verbose);
         }
         else
         {
@@ -110,13 +110,13 @@ public class EWSClient
 
             if (currentTime - upd >= 1000 * 60 * 2)
             {
-                System.out.println(new java.util.Date().toString() + ": Info: Fetching IPs from EWS as local DB is outdated");
+                if (verbose) System.out.println(new java.util.Date().toString() + ": Info: Fetching IPs from EWS as local DB is outdated");
 
-                return fetchIPsFromCore(authToken);
+                return fetchIPsFromCore(authToken, verbose);
             }
             else
             {
-                System.out.println(new java.util.Date().toString() + ": Info: Fetching IPs from database as current");
+                if (verbose) System.out.println(new java.util.Date().toString() + ": Info: Fetching IPs from database as current");
 
                 return m_db.getIPs();
             }
@@ -129,7 +129,7 @@ public class EWSClient
      * @param authToken
      * @return
      */
-    public List fetchIPsFromCore(String authToken)
+    public List fetchIPsFromCore(String authToken, boolean verbose)
     {
 
 
@@ -154,9 +154,13 @@ public class EWSClient
             ResponseHandler<String> response = new BasicResponseHandler();
 
             String returnCode = client.execute(method, response);
-            System.out.println("Answer from server: " + returnCode);
 
-            List newIPs = extractIPs(returnCode);
+            if (verbose)
+                System.out.println("Answer from server: " + returnCode);
+            else
+                System.out.println(returnCode);
+
+            List newIPs = extractIPs(returnCode, verbose);
 
             m_db.setLastUpdate(String.valueOf(new java.util.Date().getTime()), newIPs.size(), newIPs);
 
@@ -165,7 +169,7 @@ public class EWSClient
         }
         catch (Exception e)
         {
-            System.out.println("Error at BadIPFetch.EWSClient.fetch(" + new Date().toString() + "): Exception caugh");
+            System.out.println("Error at BadIPFetch.EWSClient.fetch(" + new Date().toString() + "): Exception caught");
             return null;
         }
 
@@ -177,7 +181,7 @@ public class EWSClient
      * @param ips
      * @return
      */
-    private List extractIPs(String ips)
+    private List extractIPs(String ips, boolean verbose)
     {
         String startValue = "<Source><Address>";
         String endValue = "</Address></Source>";
@@ -211,7 +215,7 @@ public class EWSClient
         }
 
 
-        System.out.println("Info: Extracted " + counter + " IPs at time " + new java.util.Date().toString());
+        if (verbose) System.out.println("Info: Extracted " + counter + " IPs at time " + new java.util.Date().toString());
 
         return ls;
 
