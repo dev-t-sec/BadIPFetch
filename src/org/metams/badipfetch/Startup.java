@@ -21,6 +21,7 @@ public class Startup
 
     private String m_password = null;
     private String m_username = null;
+    private String m_server   = null;
 
     public void Startup()
     {
@@ -44,6 +45,7 @@ public class Startup
             stream.close();
             m_password = properties.getProperty("badipfetchpw");
             m_username = properties.getProperty("badipfetchname");
+            m_server = properties.getProperty("badipfetchserver");
         }
         catch (Exception e )
         {
@@ -61,8 +63,16 @@ public class Startup
      */
     public void run(String[] args) throws InterruptedException
     {
-        EWSClient x = new EWSClient("https://www.t-sec-radar.de/ews-0.1/alert/retrieveIPs", true);
+
         handleProperties();
+
+        // if no data can be read, we have to abort
+        if (m_password == null || m_username == null || m_server == null)
+        {
+            return;
+        }
+
+        EWSClient x = new EWSClient(m_server, true);
 
         for (int runner = 0; runner <= 100; runner++)
         {

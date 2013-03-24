@@ -56,6 +56,7 @@ Create a file configs.txt within this directory with the following lines:
 
 badipfetchname=YOUR USERNAME
 badipfetchpw=YOUR PASSWORD
+badipfetchserver=https://www.t-sec-radar.de
 
 Compile the code using the supplied ant script.
 
@@ -72,7 +73,7 @@ How to implement a cron job alike call (dumping IPs at every call):
 -------------------------------------------------------------------
 
 ant
-call ./start.sh with username and password as parameters
+call ./start.sh with username password server as parameters
 
 
 

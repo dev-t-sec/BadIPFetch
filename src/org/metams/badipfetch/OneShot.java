@@ -31,11 +31,12 @@ public class OneShot
      * run the EWS client
      * @param password
      * @param username
+     * @param server
      * @throws InterruptedException
      */
-    public void run(String username, String password) throws InterruptedException
+    public void run(String username, String password, String server) throws InterruptedException
     {
-        EWSClient x = new EWSClient("https://www.t-sec-radar.de/ews-0.1/alert/retrieveIPs", true);
+        EWSClient x = new EWSClient(server, true);
 
             try
             {
@@ -64,17 +65,17 @@ public class OneShot
     public static void main(String[] args)
     {
 
-        if (args.length != 2)
+        if (args.length != 3)
         {
             System.out.println("Error, wrong command line parameters");
-            System.out.println("Please use ./start.sh username password");
+            System.out.println("Please use ./start.sh username password server");
             return;
         }
 
         OneShot myOne = new OneShot();
         try
         {
-            myOne.run(args[0], args[1]);
+            myOne.run(args[0], args[1], args[2]);
         }
         catch (InterruptedException e)
         {
