@@ -3,16 +3,9 @@ package org.metams.badipfetch;
 import redis.clients.jedis.Jedis;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: flake
- * Date: 12/10/12
- * Time: 9:29 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class Redis
 {
 
@@ -92,6 +85,16 @@ public class Redis
     public void setIP(String ip, int ipCounter)
     {
         m_con.set("IP_" + new Integer(ipCounter).toString(), ip);
+    }
+
+
+    /**
+     * delete a give IP from the redis server
+     * @param io
+     */
+    public void deleteIP(String io)
+    {
+        m_con.del(io);
     }
 
 
