@@ -30,6 +30,7 @@ public class Redis
     public Redis()
     {
         m_verbose = true;
+
     }   // Redis constructor
 
 
@@ -81,10 +82,56 @@ public class Redis
     /**
      * sets a new ip
      * @param ip
+     * @param number of ip
      */
-    public void setIP(String ip, int ipCounter)
+    public void setIP(String ip, int ipCounter, boolean increaseNumberOfIPs)
     {
         m_con.set("IP_" + new Integer(ipCounter).toString(), ip);
+
+        if (increaseNumberOfIPs)
+        {
+            String n = getNumberOfIPs();
+            int nn = new Integer(n).intValue() + 1;
+            setNumberOfIPs(nn);
+        }
+
+    }
+
+
+    /**
+     * sets a new ip
+     * @param ip
+     */
+    public void setIP(String ip, boolean increaseNumberOfIPs)
+    {
+        m_con.set("IP_" + getNumberOfIPs(), ip);
+
+        if (increaseNumberOfIPs)
+        {
+            String n = getNumberOfIPs();
+            int nn = new Integer(n).intValue() + 1;
+            setNumberOfIPs(nn);
+        }
+
+    }
+
+
+    /**
+     * checks if a a given IP is in the database
+     * @param ip
+     * @return
+     */
+    public boolean checkKnownIP(String ip)
+    {
+        List x = getIPs();
+
+        for (int runner = 0; runner <= x.size() - 1; runner++)
+        {
+            if (x.get(runner).equals(ip))
+                return true;
+        }
+
+        return false;
     }
 
 
@@ -118,7 +165,14 @@ public class Redis
      */
     public String getNumberOfIPs()
     {
-        return m_con.get("NUMBER_OF_IPS");
+
+        String x = m_con.get("NUMBER_OF_IPS");
+
+        if (x == null || x.equals(""))
+            return "0";
+        else
+            return x;
+
     }   // getNumberOfIPs
 
 
@@ -148,7 +202,7 @@ public class Redis
         for (int runner = 0; runner <=numberOfIps - 1; runner++)
         {
             String ip = (String)ips.get(runner);
-            setIP(ip, runner);
+            setIP(ip, runner, false);
         }
 
     }   // setLastUpdate
