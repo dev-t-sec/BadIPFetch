@@ -74,7 +74,7 @@ public class Startup
 
         EWSClient x = new EWSClient(m_server, true);
 
-        for (int runner = 0; runner <= 100; runner++)
+        for (int runner = 0; runner <= 10000; runner++)
         {
 
             try
