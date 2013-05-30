@@ -127,7 +127,9 @@ public class Redis
 
         for (int runner = 0; runner <= x.size() - 1; runner++)
         {
-            if (x.get(runner).equals(ip))
+
+            String key = (String)x.get(runner);
+            if (key != null && key.equals(ip))
                 return true;
         }
 
@@ -137,11 +139,27 @@ public class Redis
 
     /**
      * delete a give IP from the redis server
-     * @param io
+     * @param ipToDelete
      */
-    public void deleteIP(String io)
+    public boolean deleteIP(String ipToDelete)
     {
-        m_con.del(io);
+
+        boolean code = false;
+
+        int numberOfIPS = new Integer(getNumberOfIPs()).intValue();
+
+        for (int runner = 0; runner <= numberOfIPS - 1 ; runner++ )
+        {
+
+            String ip = m_con.get("IP_" + new Integer(runner).toString());
+            if (ip != null && ip.equals(ipToDelete))
+            {
+                m_con.del("IP_" + new Integer(runner).toString());
+                code = true;
+            }
+
+        }
+        return code;
     }
 
 

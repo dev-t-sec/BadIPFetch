@@ -22,13 +22,23 @@ public class TestMe
             System.exit(0);
         }
 
+
+        // clean up all old data
+        x.deleteIP("192.168.1.1");
+        x.deleteIP("192.168.1.2");
+
         x.setIP("192.168.1.1", true);
 
         boolean xTrue = x.checkKnownIP("192.168.1.1");
         boolean xFalse = x.checkKnownIP("192.168.1.2");
 
-        int test = 1;
+        boolean x2True = x.deleteIP("192.168.1.1");
+        boolean x2False = x.deleteIP("192.168.1.2");
 
+        boolean x3False = x.checkKnownIP("192.168.1.1");
+        boolean x3False_2 = x.checkKnownIP("192.168.1.2");
+
+        int test = 1;
 
     }
 }
