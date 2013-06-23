@@ -98,7 +98,7 @@ public class EWSClient
         {
             // no data stored in db
 
-            if (verbose) System.out.println(new java.util.Date().toString() + ": Info: Fecthing ips from EWS as local DB is empty");
+            if (verbose) System.out.println(new java.util.Date().toString() + ": Info: Fetching ips from EWS as local DB is empty");
 
             return fetchIPsFromCore(authToken, verbose);
         }
@@ -187,6 +187,14 @@ public class EWSClient
         String endValue = "</Address></Source>";
         int runner = 0;
         int counter = 0;
+
+
+        // fix for extended API introduced June 2013
+        if (m_url.contains("/api/"))
+        {
+            startValue = "'>";
+            endValue = "</Source>";
+        }
 
         List<String> ls=new ArrayList<String>();
 

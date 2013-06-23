@@ -56,18 +56,27 @@ Create a file configs.txt within this directory with the following lines:
 
 badipfetchname=YOUR USERNAME
 badipfetchpw=YOUR PASSWORD
-badipfetchserver=https://www.t-sec-radar.de
+badipfetchserver=https://www.t-sec-radar.de/ews-0.1/alert/retrieveIPs
 
 Compile the code using the supplied ant script.
 
-Demo output:
-------------
+Demo output (API 1.0 only):
+---------------------------
 
 Sat Mar 02 08:44:12 CET 2013: Info: Fetching IPs from EWS as local DB is outdated
 Answer from server: <EWSSimpleIPInfo><Sources><Source><Address>100.200.300.400</Address></Source></EWSSimpleIPInfo>
 Info: Extracted 1000 IPs at time Sat Mar 02 08:44:21 CET 2013
 Sat Mar 02 08:44:21 CET 2013: Info: Set last update of database
 Sat Mar 02 08:44:21 CET 2013: Info: Set ip number to 1000 within database
+
+
+Demo output (API 1.1 ++):
+---------------------------
+
+<EWSSimpleIPInfo><Sources><Source category='ipv4' foundByType='100000'>188.173.62.BLAH</Source>
+
+
+
 
 How to implement a cron job alike call (dumping IPs at every call):
 -------------------------------------------------------------------
