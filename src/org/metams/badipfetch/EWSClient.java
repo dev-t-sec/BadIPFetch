@@ -5,7 +5,8 @@ import org.apache.http.client.methods.HttpPost;
 
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
 import java.io.UnsupportedEncodingException;
 
@@ -14,9 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * User: flake
- * Date: Jun 13, 2010
- * Time: 8:37:15 PM
+ * core class for sending data to the DTAG early warning system
  */
 public class EWSClient
 {
@@ -143,10 +142,8 @@ public class EWSClient
         try
         {
             HttpPost method = new HttpPost(m_url);
-            DefaultHttpClient client = new DefaultHttpClient();
 
-            //DefaultHttpClient client = getFake(base);
-            client.getParams().setParameter("http.useragent", "Flake Test Client");
+            CloseableHttpClient client = HttpClients.createDefault();
 
             StringEntity strent = new StringEntity(authToken);
             strent.setContentType("text/xml; charset=utf-8");
@@ -217,8 +214,6 @@ public class EWSClient
                 runner = endIndex + endValue.length();
                 counter++;
             }
-
-
 
         }
 

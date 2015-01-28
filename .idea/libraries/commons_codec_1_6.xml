@@ -6,7 +6,6 @@
       <root url="jar://$PROJECT_DIR$/libs/fluent-hc-4.2.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/httpclient-4.2.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/httpclient-cache-4.2.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/httpcore-4.2.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/httpcore-4.2.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/httpcore-ab-4.2.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/httpcore-nio-4.2.3.jar!/" />

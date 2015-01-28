@@ -64,15 +64,25 @@ public class Redis
     {
         List<String> ls=new ArrayList<String>();
 
-        int counterFromDB = new Integer(m_con.get("NUMBER_OF_IPS")).intValue();
-
-        if (m_verbose)
-            System.out.println(new java.util.Date().toString() + ": Info: Retrieved " + new Integer(counterFromDB).toString() + " ips from database");
-
-        for (int runner = 0; runner <= counterFromDB - 1; runner++)
+        try
         {
-            String ip = m_con.get("IP_" + new Integer(runner).toString());
-            ls.add(ip);
+
+            int counterFromDB = new Integer(m_con.get("NUMBER_OF_IPS")).intValue();
+
+            if (m_verbose)
+                System.out.println(new java.util.Date().toString() + ": Info: Retrieved " + new Integer(counterFromDB).toString() + " ips from database");
+
+            for (int runner = 0; runner <= counterFromDB - 1; runner++)
+            {
+                String ip = m_con.get("IP_" + new Integer(runner).toString());
+                ls.add(ip);
+            }
+        }
+        catch (Exception e)
+        {
+            if (m_verbose)
+                System.out.println(new java.util.Date().toString() + ": Error: Retrieving ips from database broken down");
+
         }
 
         return ls;
