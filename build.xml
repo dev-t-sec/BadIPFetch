@@ -18,7 +18,7 @@
 
         <javac srcdir="./src/"
                destdir="./out/"
-               classpath="./libs/jedis-2.1.0.jar:./libs/httpcore-4.2.3.jar:./libs/httpclient-4.2.2.jar"
+               classpath="./libs/jedis-2.1.0.jar:./libs/httpcore-4.3.3.jar:./libs/httpclient-4.3.6.jar"
                debug="on">
 
 
