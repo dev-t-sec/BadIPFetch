@@ -1,6 +1,6 @@
 "Fetch bad IPs"
 
-Version 0.9, 01-01-2013
+Version 0.91, 03-01-2015
 
 Idea
 ----
@@ -17,7 +17,7 @@ This little tool provides you with the necessary interface code for it.
 Dependencies:
 -------------
 
-Java 1.6 or higher (tested with both, latest 1.6 and 1.7 versions on Mac OS X)
+Java 1.6 or higher (tested with both, latest 1.6, 1.7 and 1.8 versions on Mac OS X)
 Redis (simple, lightweight NoSQL DB, see http://redis.io, tested with version 2.6.7)
 Jedis (Java client for Redis, included in this archiv)
 HttpClient (package from Apache foundation, included in this package)
@@ -52,11 +52,19 @@ E.g. for my setup
 
 mkdir /Users/flake/config
 
+
 Create a file configs.txt within this directory with the following lines:
 
 badipfetchname=YOUR USERNAME
 badipfetchpw=YOUR PASSWORD
 badipfetchserver=https://www.t-sec-radar.de/ews-0.1/alert/retrieveIPs
+
+For the community version, use the following code:
+
+badipfetchname=YOUR USERNAME
+badipfetchpw=YOUR PASSWORD
+badipfetchserver=https://www.t-sec-radar.de/ews-0.1/alert/retrieveCommunityIPs
+
 
 Compile the code using the supplied ant script.
 
@@ -90,7 +98,9 @@ Cheers
 
 Markus
 
-Contact: markus-schmall@t-online.de
+Contact: cert@telekom.de
+
+
 
 
 

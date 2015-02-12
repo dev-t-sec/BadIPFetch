@@ -10,11 +10,7 @@ import java.util.Properties;
 
 
 /**
- * Created with IntelliJ IDEA.
- * User: flake
- * Date: 12/9/12
- * Time: 9:25 PM
- * To change this template use File | Settings | File Templates.
+ *
  */
 public class Startup
 {
@@ -23,6 +19,9 @@ public class Startup
     private String m_username = null;
     private String m_server   = null;
 
+    /**
+     * default constructor
+     */
     public void Startup()
     {
 
@@ -43,9 +42,11 @@ public class Startup
             BufferedInputStream stream = new BufferedInputStream(new FileInputStream(fileName));
             properties.load(stream);
             stream.close();
+
             m_password = properties.getProperty("badipfetchpw");
             m_username = properties.getProperty("badipfetchname");
             m_server = properties.getProperty("badipfetchserver");
+
         }
         catch (Exception e )
         {
