@@ -1,6 +1,6 @@
 "Fetch bad IPs"
 
-Version 0.91, 03-01-2015
+Version 0.91, 02-10-2015
 
 Idea
 ----
@@ -12,6 +12,14 @@ The backend logic remembers only IP adresses, which have been involved in an att
 minutes.
 
 This little tool provides you with the necessary interface code for it.
+
+In general we differentiate between two categories:
+
+1. "Validated" Honeypots
+2. Community honeypots
+
+A user cannot can only be linked to one of the both categories.
+
 
 
 Dependencies:
@@ -58,6 +66,7 @@ Create a file configs.txt within this directory with the following lines:
 badipfetchname=YOUR USERNAME
 badipfetchpw=YOUR PASSWORD
 badipfetchserver=https://www.t-sec-radar.de/ews-0.1/alert/retrieveIPs
+
 
 For the community version, use the following code:
 
