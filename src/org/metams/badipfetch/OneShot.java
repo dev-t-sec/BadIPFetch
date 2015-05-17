@@ -44,6 +44,11 @@ public class OneShot
                 String authToken = x.getMessage(password, username);
                 List ips = x.fetchIPs(authToken, false);
 
+                if (ips == null)
+                {
+                    System.out.println("Error: Unable to retrieve IPs");
+                }
+
                 for (int runner = 0; runner <= ips.size() -1; runner++)
                 {
                     System.out.println(ips.get(runner));
