@@ -220,17 +220,22 @@ public class Redis
      */
     public void setLastUpdate(String date, int numberOfIps, List ips)
     {
-        m_con.set("LAST_UPDATE_OF_IPS", date);
+        try {
+            m_con.set("LAST_UPDATE_OF_IPS", date);
 
-        if (m_verbose)
-            System.out.println(new java.util.Date().toString() + ": Info: Set last update of database");
+            if (m_verbose)
+                System.out.println(new java.util.Date().toString() + ": Info: Set last update of database");
 
-        setNumberOfIPs(numberOfIps);
+            setNumberOfIPs(numberOfIps);
 
-        for (int runner = 0; runner <=numberOfIps - 1; runner++)
+            for (int runner = 0; runner <= numberOfIps - 1; runner++) {
+                String ip = (String) ips.get(runner);
+                setIP(ip, runner, false);
+            }
+        }
+        catch (redis.clients.jedis.exceptions.JedisConnectionException e)
         {
-            String ip = (String)ips.get(runner);
-            setIP(ip, runner, false);
+            System.out.println("BadIpFetch: Warning, Redis database not available.");
         }
 
     }   // setLastUpdate

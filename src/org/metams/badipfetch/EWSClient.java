@@ -97,7 +97,7 @@ public class EWSClient
         // if somekind of error appeared before, just quick
         if (m_error)
         {
-            return null;
+            return fetchIPsFromCore(authToken, verbose);
         }
 
         // in production mode, return real values
