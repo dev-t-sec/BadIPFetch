@@ -193,8 +193,8 @@ public class EWSClient
      */
     private List extractIPs(String ips, boolean verbose)
     {
-        String startValue = "<Source><Address>";
-        String endValue = "</Address></Source>";
+        String startValue = "<Address>";
+        String endValue = "</Address>";
         int runner = 0;
         int counter = 0;
 
