@@ -1,3 +1,4 @@
 21 March 2013: Added server location as parameter (thx Markus Schroer for idea)
 some optimized error handling code
 13 July  2015: Fixed data extraction code (thx Rene Schroeder)
+11 Feb 2017: Updated some libraries
