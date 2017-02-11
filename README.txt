@@ -1,6 +1,6 @@
 "Fetch bad IPs"
 
-Version 0.91, 02-10-2015
+Version 0.92, 12-02-2017
 
 Idea
 ----
