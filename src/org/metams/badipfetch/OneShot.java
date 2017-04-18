@@ -3,19 +3,7 @@ package org.metams.badipfetch;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import java.io.FileInputStream;
-import java.io.BufferedInputStream;
-import java.util.Properties;
 
-
-
-/**
- * Created with IntelliJ IDEA.
- * User: flake
- * Date: 12/9/12
- * Time: 9:25 PM
- * To change this template use File | Settings | File Templates.
- */
 public class OneShot
 {
 
